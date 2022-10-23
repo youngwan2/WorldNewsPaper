@@ -18,6 +18,7 @@ body{
 /** 사이트 카테고리 */
 
 .container .menu .line{
+    display: none;
     border-bottom: 3px solid burlywood;
     position: absolute;
     top:160px;

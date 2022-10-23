@@ -72,7 +72,7 @@ const getTopic=async(e)=>{
 // menu 라인
 
 function menuBtnLine(e){
-  line.display='block'
+  line.style.display='block'
   line.style.left= e.currentTarget.offsetLeft + 'px';
   line.style.width=e.currentTarget.offsetWidth + 'px';
   line.style.top=
