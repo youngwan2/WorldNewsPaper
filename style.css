@@ -1,0 +1,103 @@
+*{
+   padding: 0;
+   color:white;
+}
+body{
+    background-color: rgb(0, 0, 0);
+    text-decoration: none;
+    list-style: none;
+}
+
+/** 사이트 제목 */
+.container h1{
+    text-align: center;
+    margin-top: 4rem;
+
+}
+
+/** 사이트 카테고리 */
+
+.container .menu .line{
+    border-bottom: 3px solid burlywood;
+    position: absolute;
+    top:160px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    transition-property: left;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+
+}
+
+.container .menu{
+    padding-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+
+/** 사이트 카테고리 세부 메뉴 */
+.container .menu button{
+    padding: 10px;
+    border-bottom: 4px solid grey;
+    background-color: black;
+}
+.container .menu button:focus{
+    background-color: white;
+    color:black;
+    border-radius: 5px;
+}
+.container .menu button:hover{
+    background-color: rgb(255, 255, 255); color:rgb(6, 5, 5);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/** 콘텐츠 영역 */
+.container .main-content{
+    display: flex;
+    padding: 15px;
+    margin-top: 15px;
+    border-bottom: 1px solid gray;
+}
+
+.container .main-text{
+    padding: 10px;
+    padding-left: 15px;
+}
+
+.container .main-text h4:hover{
+    color: rgb(230, 49, 155);
+    cursor: pointer;
+}
+.container .main-text .date{
+    text-align: left;
+}
+.container .main-text p{
+    margin: 0 ;
+}
+.container .main img{
+    width: 30%;
+}
+
+
+
+@media screen and (min-width: 0) and (max-width: 768px){
+    .container .main-content{
+        display: inline-block;
+    }
+    .container .main img{
+        width: 100%;
+        padding-bottom: 15px;
+
+    
+    }
+    
+    
+}
