@@ -1,5 +1,7 @@
 let line=document.querySelector('.line')
 let main = document.querySelector('.main')
+let userInput=document.getElementById('user-input')
+let inputBtn=document.getElementById('input-btn')
 const menuBtn=document.querySelectorAll('.container .menu button')
 menuBtn.forEach((menu)=>{menu.addEventListener("click",(e)=>getTopic(e))})
 
@@ -10,11 +12,9 @@ menuBtn.forEach((btn)=>{
  })
 
 
-
-
-
+// 메인뉴스 리스트가 보이는 곳
 let news = [];
-const koreanNews= async() =>{
+const worldNews= async() =>{
     let url =new URL('https://content.guardianapis.com/search?api-key=e14f2dc3-7231-47da-900e-d38cc4d26542')
     console.log(url)  //url 정보를 가져온다.
 
@@ -41,8 +41,10 @@ const koreanNews= async() =>{
        
        
 } 
-koreanNews();
+ worldNews();
 
+
+//카테고리 별 주제 클릭 시 해당하는 키워드의 뉴스 리스트를 호출
 const getTopic=async(e)=>{
   console.log(e.target.textContent)
   let topic = e.target.textContent.toLowerCase()
@@ -67,9 +69,43 @@ const getTopic=async(e)=>{
       main.innerHTML = temp
   }
  
+//검색창에 키워드 입력 시 해당하는 키워드의 뉴스 리스트가 뜨도록 코딩
 
 
-// menu 라인
+const searchNews=async()=>{
+  let search=userInput.value
+  let url=new URL(`https://content.guardianapis.com/search?q=${search}&api-key=e14f2dc3-7231-47da-900e-d38cc4d26542`)
+  let response= await fetch(url)
+  let data=await response.json()
+
+  let getSearch=data.response.results
+  console.log(getSearch)
+
+  let searchHTML=''
+  getSearch.map((getSearch)=>{
+    return searchHTML+=`<div class="main-content">
+    <div class="main-text">
+      <h4><a style="text-decoration:none; color:rgb(230, 49, 155)" href="${getSearch.webUrl}">${getSearch.webTitle}</a></h4><br>
+      <p>제목을 클릭하시면 해당 기사의 사이트로 이동하여 자세한 정보를 확인하실 수 있습니다.</p><br>
+      <div class="date">${getSearch.webPublicationDate}</div>
+    </div>
+    </div>` })
+
+    main.innerHTML=searchHTML
+
+ 
+}
+
+inputBtn.addEventListener('click',searchNews)
+
+
+
+
+
+
+
+
+// 카테고리를 선택했을 때 해당하는 영역으로 라인이 이동하도록 코딩
 
 function menuBtnLine(e){
   line.style.display='block'

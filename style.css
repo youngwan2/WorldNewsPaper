@@ -15,6 +15,26 @@ body{
 
 }
 
+/* 유저 검색창 */
+.container .search{
+    margin-top: 2em;
+    display: flex;
+    justify-content: right;
+}
+
+.container .search input{
+    border-radius: 10px;
+    padding-right: 5px;
+    margin-right: 7px;
+    color: black;
+    text-align: center;
+}
+
+#input-btn{
+    background-color: black;
+}
+
+
 /** 사이트 카테고리 */
 
 .container .menu .line{
@@ -86,6 +106,17 @@ body{
 .container .main img{
     width: 30%;
 }
+
+
+.pagination{
+    justify-content: center;
+}
+.pagination .page-item a{
+    background-color: black;
+    color: rgb(230, 49, 155);
+}
+
+
 
 
 
