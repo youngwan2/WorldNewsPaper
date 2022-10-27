@@ -15,6 +15,7 @@ menuBtn.forEach((btn)=>{
 
 let url;
 
+
 const getDataStore=async()=>{
   let response = await fetch(url)      
   let data=await response.json();       
@@ -31,17 +32,25 @@ const getDataStore=async()=>{
           </div>` })
       
          main.innerHTML = temp.join(''); 
+
+       try{
+        if(getData==''){
+          throw new Error("찾고자 하는 자료가 존재하지 않습니다.")
+        }
+       } catch(error){
+           alert(error)
+       }
 }
+
+
 // 메인뉴스 리스트가 보이는 곳
 let news = [];
 const worldNews= async() =>{
     url =new URL('https://content.guardianapis.com/search?api-key=e14f2dc3-7231-47da-900e-d38cc4d26542')
  
     getDataStore();
-       
-       
-} 
- worldNews();
+         
+}  worldNews();
 
 
 //카테고리 별 주제 클릭 시 해당하는 키워드의 뉴스 리스트를 호출
@@ -59,13 +68,10 @@ const getTopic=async(e)=>{
 const searchNews=async()=>{
   let search=userInput.value
   url=new URL(`https://content.guardianapis.com/search?q=${search}&api-key=e14f2dc3-7231-47da-900e-d38cc4d26542`)
-  
- getDataStore();   
+ 
+  getDataStore();  
 
- }
-
-
-inputBtn.addEventListener('click',searchNews)
+ } inputBtn.addEventListener('click',searchNews)
 
 
 
