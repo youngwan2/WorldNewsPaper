@@ -8,6 +8,23 @@ body{
     list-style: none;
 }
 
+/* 찾은 자료가 없는 경우 안내 메시지 나타내는 영역 */
+#not-find{
+    width: 100%;
+    height: 100px;
+    margin-top: 5rem;
+    background-color: rgb(0 0 0 / 13%);
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
 /** 사이트 제목 */
 .container h1{
     text-align: center;
