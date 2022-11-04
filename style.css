@@ -124,17 +124,57 @@ body{
     width: 30%;
 }
 
+/* 페이지네이션 영역 */
 
-.pagination{
+
+.first-page, .last-page, .before, .after{
     justify-content: center;
-}
-.pagination .page-item a{
+    display: flex;
+    margin-top: -5px;
     background-color: black;
     color: rgb(230, 49, 155);
+    padding: 3px 12px 5px 9px;
+    text-decoration: none;
+    font-size: 1.2rem;
 }
 
+/* .first-page{
+    display: none;
+} */
 
 
+
+
+.pagenation{
+    justify-content: center;
+    display: flex;
+    margin-top: 5px;
+    
+}
+
+.pagenation li{
+    list-style: none;
+}
+
+.pagenation li a:first::before{
+    content:"<"
+}
+
+.pagenation .page-item .normal{
+    background-color: black;
+    color: rgb(230, 49, 155);
+    padding: 5px 15px 5px 15px;
+    border: 1px solid white;
+    text-decoration: none;
+}
+
+.pagenation .page-item .action{
+    background-color: beige;
+    color: rgb(230, 49, 155);
+    padding: 5px 15px 5px 15px;
+    border: 1px solid white;
+    text-decoration: none;
+}
 
 
 @media screen and (min-width: 0) and (max-width: 768px){
