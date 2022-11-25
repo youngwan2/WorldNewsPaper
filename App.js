@@ -1,13 +1,12 @@
 let line=document.querySelector('.line');
 let main = document.querySelector('.main');
-let userInput=document.getElementById('user-input');
+let userInput=document.querySelector('#user-input');
 let inputBtn=document.getElementById('input-btn');
 const menuBtn=document.querySelectorAll('.container .menu button');
 
 
 
 
- 
 menuBtn.forEach((menu)=>{menu.addEventListener("click",(e)=>getTopic(e))});
 
 menuBtn.forEach((btn)=>{
@@ -25,13 +24,11 @@ menuBtn.forEach((btn)=>{
 const getDataStore = async()=>{
  
        try{
-        console.log(url.searchParams.set('page',pageNum));
+        console.log(url.searchParams.set('page',pageNum)); //-> url 뒤에 page = 번호
         console.log(url);
         let response = await fetch(url);
         let data = await response.json();   
         let getData = data.response.results;
-        let currentPage = data.response.currentPage;
-
 
 
         if(response.status == 200){
@@ -82,7 +79,8 @@ const getTopic = async(e) => {
   url= new URL(`https://content.guardianapis.com/search?q=${topic}&api-key=e14f2dc3-7231-47da-900e-d38cc4d26542&show-fields=thumbnail`)
 
   getDataStore();
-  };
+
+};
  
 
 //======================검색창에 키워드 입력 시 해당하는 키워드의 뉴스 리스트가 뜨도록 코딩=================
@@ -92,7 +90,15 @@ const searchNews = async() => {
 
   getDataStore();  
   
- }; inputBtn.addEventListener('click',searchNews) ;
+ }; 
+
+ inputBtn.addEventListener('click',searchNews) ;
+ userInput.addEventListener('keyup',(e)=>{
+      if(e.keyCode === 13){
+        searchNews();
+      };
+ });
+
 
 
 //====================================페이지네이션 함수-============================================
@@ -112,7 +118,7 @@ const pagenation = () => {
   <li class="page-item"><a onclick="page(${1})" class="first-page" href="#"><<</a></li>
   <li class="page-item"><a onclick="page(${pageNum-1})" class="before" href="#"><</a></li>`;
   
-  if(pageNum == 1){
+  if(pageNum === 1){
     pagenationHTML=`
         <li class="page-item"><a onclick="page(${1})" class="first-page hidden" href="#"><<</a></li>
         <li class="page-item"><a onclick="page(${pageNum-1})" class="before hidden" href="#"><</a></li>`;
@@ -155,22 +161,6 @@ const page=(num)=>{
   getDataStore();
 };
 
-
-
-
-
-
-
-
-// -----------------------------------카테고리를 선택했을 때 해당하는 영역으로 라인이 이동하도록 코딩---------------------------------
-
-function menuBtnLine(e){
-  line.style.display='block';
-  line.style.left=e.currentTarget.offsetLeft + 'px';
-  line.style.width=e.currentTarget.offsetWidth + 'px';
-  line.style.top=
-       e.currentTarget.offsetLeftTop + e.currentTarget.offsetHeight + 'px';
-};
 
 
 worldNews();
