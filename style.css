@@ -138,11 +138,13 @@ body{
     font-size: 1.2rem;
 }
 
-/* .first-page{
+.hidden{
     display: none;
-} */
+}
 
-
+.hidden2{
+    display: none;
+}
 
 
 .pagenation{

@@ -20,14 +20,12 @@ menuBtn.forEach((btn)=>{
  let total = 120;        //전체페이지
 
 
-
-
  let url;
 //============== 중복 데이터 저장소=================================
 const getDataStore = async()=>{
  
        try{
-        url.searchParams.set('page',pageNum)
+        console.log(url.searchParams.set('page',pageNum))
         console.log(url)
         let response = await fetch(url)
         let data = await response.json()    
@@ -104,7 +102,7 @@ let firstPageShift = document.querySelector('.first-page')
 let lastPageShift = document.querySelector('.last-page')
 
 
-const pagenation = (firstBeforePage) => {
+const pagenation = () => {
   
   // 총 페이지
   // 현재 페이지
@@ -119,34 +117,43 @@ const pagenation = (firstBeforePage) => {
   <li class="page-item"><a onclick="page(${1})" class="first-page" href="#"><<</a></li>
   <li class="page-item"><a onclick="page(${pageNum-1})" class="before" href="#"><</a></li>`
   
+  if(pageNum == 1){
+    pagenationHTML=`
+        <li class="page-item"><a onclick="page(${1})" class="first-page hidden" href="#"><<</a></li>
+        <li class="page-item"><a onclick="page(${pageNum-1})" class="before hidden" href="#"><</a></li>`
+
+  };
+
   for(let i=firstPage; i<=lastPage; i++){   //페이지네이션을 첫번째 페이지에서 마지막페이지 까지 그려준다.
-    pagenationHTML += `<li class="page-item"><a class= ${pageNum===i? "action" : "normal"} onClick="pageChange(${i})" class="page-link" href="#">${i}</a></li>`
+    pagenationHTML += `
+        <li class="page-item"><a class= ${pageNum === i? "action" : "normal"} onClick="page(${i})" class="page-link" href="#">${i}</a></li>`
+  };
+
+
+  if(pageNum === total){
+    pagenationHTML+=`
+        <li class="page-item"><a onClick="page(${pageNum+1})" class="after hidden2" href="#">></a></li>
+        <li class="page-item"><a onclick="page(${total})" class="last-page hidden2" href="#">>></a></li>`
+
+  } else{
+    pagenationHTML+=`
+        <li class="page-item"><a onClick="page(${pageNum+1})" class="after" href="#">></a></li>
+        <li class="page-item"><a onclick="page(${total})" class="last-page" href="#">>></a></li>`
   }
-  pagenationHTML+=`
-  <li class="page-item"><a onClick="page(${pageNum+1})" class="after" href="#">></a></li>
-  <li class="page-item"><a onclick="page(${total})" class="last-page" href="#">>></a></li>`
+
   document.querySelector('.pagenation').innerHTML = pagenationHTML
 
 };
 
-
 pagenation();
 
-//페이지 숫자 클릭 시 해당 번호의 페이지로 이동
-const pageChange=(num)=>{
-  pageNum = num
-  console.log(pageNum)
 
-  getDataStore()
-};
-
-// 이전-이후 페이지, 첫-마지막 페이지 이동
+// 페이지 이동
 const page=(num)=>{
   pageNum = num
   if(pageNum <1){
     return alert("페이지가 존재하지 않습니다.")
-  }
-
+  } 
   if(pageNum >total){
     return alert("마지막 페이지 입니다.")
   }
@@ -165,7 +172,7 @@ const page=(num)=>{
 
 function menuBtnLine(e){
   line.style.display='block'
-  line.style.left= e.currentTarget.offsetLeft + 'px';
+  line.style.left=e.currentTarget.offsetLeft + 'px';
   line.style.width=e.currentTarget.offsetWidth + 'px';
   line.style.top=
        e.currentTarget.offsetLeftTop + e.currentTarget.offsetHeight + 'px';
