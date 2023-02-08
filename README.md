@@ -14,6 +14,7 @@
 - 페이지네이션 기능을 통해 총 120페이지 까지 기사를 열람할 수 있습니다.
 
 ▶ 시연이미지
+
 ![뉴스페이어(11_25)반응](https://user-images.githubusercontent.com/107159871/203979711-d1dd0170-9e3b-42d5-b052-60bdd37fe5cf.png)
 ![뉴스페이퍼(11_25)](https://user-images.githubusercontent.com/107159871/203979718-573c2e11-cc77-47ee-8d81-10169889675e.png)
 
